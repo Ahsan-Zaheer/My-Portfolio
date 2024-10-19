@@ -1,0 +1,129 @@
+.header{
+    background-color: var(--container-color);
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav_toggle, .nav_close, .nav_ico{
+    display: none;
+}
+
+.nav_list{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+
+
+}
+.nav_list div{
+    display: flex;
+}
+
+.nav_logo{
+    font-size: var(--h3-font-size);
+    color: var(--title-color);
+    font-weight: 500;
+    margin-right: 300px;
+}
+
+.nav_link{
+    margin-right: 25px;
+    color: var(--title-color);
+    font-size: var(--small-font-size);
+    font-weight: 500;
+    transition: .3s;
+}
+
+.nav_link:hover{
+    color: var(--title-color-dark);
+}
+
+
+
+@media screen and (max-width: 968px){
+  .header{
+    position: fixed;
+    top: initial;
+    bottom: 0;
+  }
+
+  .nav_toggle, .nav_close, .nav_ico{
+    display: block;
+    }
+
+    .nav_list{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .nav_list div{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .nav_link{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav_menu{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--body-color);
+        padding: 2rem 1.5rem 4rem;
+        box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.15);
+        border-radius: 1.5rem 1.5rem 0 0;
+        transition: .3s;
+    }
+    .nav_ico{
+        font-size: 1.2rem;
+    }
+    .nav_close{
+        font-size: 1.9rem;
+        cursor: pointer;
+        position: absolute;
+        right: 1.3rem;
+    }
+    .nav_toggle{
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 428px){
+    .nav_logo{
+        margin-right: 0;
+    }
+    .nav_link{
+        margin-right: 0;
+    }
+    nav{
+        justify-content: space-between;
+    }
+    .abtDisc{
+        padding: 0 !important;
+    }
+    .header{
+        overflow-x: hidden;
+    }
+    
+}
