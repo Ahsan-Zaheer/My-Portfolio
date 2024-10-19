@@ -4,6 +4,7 @@ import { connectDB } from "./config/db.js";
 import path from "path";
 
 import messageRoutes from "./routers/message.route.js";
+import questionRoute from "./routers/question.route.js";
 import cors from "cors";
 
 
@@ -26,6 +27,7 @@ app.use(cors({
 
 
 app.use("/api/message", messageRoutes);
+app.use("/api/question", questionRoute);
 
 
 if(process.env.NODE_ENV === "production") {

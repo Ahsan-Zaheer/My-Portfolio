@@ -6,10 +6,36 @@ import ico3 from '../../assets/linkedIn.svg'
 import hand from '../../assets/hand.svg'
 import ai from '../../assets/ai.png'
 import Typewriter from 'typewriter-effect'; 
-import scroll from '../../assets/scroll.svg'
+import gif from '../../assets/loading.gif';
+import { useQAStore } from '../store/question'
 
 export default function Home() {
+
+
+  const {askQuestion} = useQAStore();
+  const [value, setValue] = useState('');
   const [smodal, setSModal] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState();
+
+
+  const handleOnchange = (e) => {
+    setValue(e.target.value);
+  };
+
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    setResponse('');
+    setLoading(true);
+    
+    const answer = await askQuestion(value);
+    setResponse(answer.answer);
+    
+    setValue('');
+    setLoading(false);
+  };
+
 
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 850);
 
@@ -36,20 +62,29 @@ export default function Home() {
             }}><i class="uil uil-multiply"></i></button>
             
 
-            <div className='searchBg'>
-            <i class="uil uil-search searchIco"></i><input type="text" name="search" id="seacrh" className='search' placeholder='Ask anything about me...'/>
-            </div>
+            <form onSubmit={handleOnSubmit} className='searchBg'>
+            <button className="ms-3 searchBtn" disabled={loading}>
+            <i class="uil uil-search searchIco"></i>
+            </button>
+            <input type="text" name="search" id="seacrh" className='search' value={value}
+            onChange={handleOnchange}
+            disabled={loading} placeholder='Ask anything about me...'/>
+            {loading && <span> <img src={gif} className='gif'/> </span>}
+
+            </form>
 
             <div className="searchContent">
-            <Typewriter 
-              options={{
-                delay: 20, 
-              }}
-            onInit={(typewriter) => { 
-              typewriter.typeString(`I am a passionate and creative web developer, committed to delivering exceptional work that merges innovation with elegance.`) 
-              .start(); 
-                }} 
-              /> 
+            
+              {response && (
+                <Typewriter 
+                options={{
+                  delay: 30, 
+                }}
+              onInit={(typewriter) => { 
+                typewriter.typeString(`${response}`) 
+                .start(); 
+                  }} 
+                /> )}
             </div>
 
 

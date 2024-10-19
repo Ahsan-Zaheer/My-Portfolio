@@ -183,6 +183,15 @@ img{
   margin-bottom: 10px;
 }
 
+.searchBtn{
+  outline: none;
+  background-color: transparent;
+}
+
+.gif{
+  width: 90px;
+}
+
 @keyframes wheel_animate {
   0%{
       transform: translateY(0);
